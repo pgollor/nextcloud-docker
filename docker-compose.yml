@@ -9,8 +9,8 @@ services:
       - nextcloud-database
     environment:
       - MYSQL_HOST=cloud
-      - MYSQL_DATABASE=${NEXTCLOUD_DATABASE_NAME}
-      - MYSQL_USER=${NEXTCLOUD_DATABASE_USER}
+      - MYSQL_DATABASE=cloud
+      - MYSQL_USER=cloud
       - MYSQL_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
       - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
       - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
@@ -33,8 +33,8 @@ services:
     command: mysqld --skip-name-resolve --skip-host-cache --log-warnings=0
     environment:
       - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_DATABASE_ROOT}
-      - MYSQL_DATABASE=${NEXTCLOUD_DATABASE_NAME}
-      - MYSQL_USER=${NEXTCLOUD_DATABASE_USER}
+      - MYSQL_DATABASE=cloud
+      - MYSQL_USER=cloud
       - MYSQL_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
     volumes:
       -  nextcloud-db-vol-1:/var/lib/mysql/
