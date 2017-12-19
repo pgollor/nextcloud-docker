@@ -2,16 +2,18 @@ version: '2.1'
 
 services:
   nextcloud-main:
-    image: nextcloud:
+    image: nextcloud:fpm
     restart: always
     mem_limit: 1g
     depends_on:
       - nextcloud-database
     environment:
-      - NEXTCLOUD_DATABASE_HOST=cloud
-      - NEXTCLOUD_DATABASE_NAME=${NEXTCLOUD_DATABASE_NAME}
-      - NEXTCLOUD_DATABASE_USER=${NEXTCLOUD_DATABASE_USER}
-      - NEXTCLOUD_DATABASE_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
+      - MYSQL_HOST=cloud
+      - MYSQL_DATABASE=${NEXTCLOUD_DATABASE_NAME}
+      - MYSQL_USER=${NEXTCLOUD_DATABASE_USER}
+      - MYSQL_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
+      - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
+      - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
       - TZ=${TZ}
     tmpfs:
       - /tmp
