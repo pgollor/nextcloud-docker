@@ -1,0 +1,55 @@
+version: '2.1'
+
+services:
+  nextcloud-main:
+    image: nextcloud:
+    restart: always
+    mem_limit: 1g
+    depends_on:
+      - nextcloud-database
+    environment:
+      - NEXTCLOUD_DATABASE_HOST=cloud
+      - NEXTCLOUD_DATABASE_NAME=${NEXTCLOUD_DATABASE_NAME}
+      - NEXTCLOUD_DATABASE_USER=${NEXTCLOUD_DATABASE_USER}
+      - NEXTCLOUD_DATABASE_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
+      - TZ=${TZ}
+    tmpfs:
+      - /tmp
+    networks:
+      nextcloud-network:
+        ipv4_address: 172.22.5.100
+        aliases:
+          - cloud
+
+  nextcloud-database:
+    image: mariadb:10.2
+    restart: always
+    mem_limit: 2g
+    command: mysqld --skip-name-resolve --skip-host-cache --log-warnings=0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_DATABASE_ROOT}
+      - MYSQL_DATABASE=${NEXTCLOUD_DATABASE_NAME}
+      - MYSQL_USER=${NEXTCLOUD_DATABASE_USER}
+      - MYSQL_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
+    volumes:
+      -  nextcloud-db-vol-1:/var/lib/mysql/
+      - ./data/conf/mysql:/etc/mysql/conf.d/:ro
+    tmpfs:
+      - /tmp
+    networks:
+      nextcloud-network:
+        ipv4_address: 172.22.5.101
+        aliases:
+          - mysql
+
+networks:
+  nextcloud-network:
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.5.0/24
+
+volumes:
+  nextcloud-db-vol-1:
