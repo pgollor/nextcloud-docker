@@ -20,6 +20,7 @@ services:
       - /tmp
     volumes:
       - ./data/cloud/:/srv/cloud/
+      - ./data/www/:/var/www/html/
     networks:
       nextcloud-network:
         ipv4_address: 172.22.5.100
