@@ -1,14 +1,14 @@
 version: '2.1'
 
 services:
-  nextcloud-main:
+  nextcloud-app:
     image: nextcloud:fpm
     restart: always
     mem_limit: 1g
     depends_on:
       - nextcloud-database
     environment:
-      - MYSQL_HOST=cloud
+      - MYSQL_HOST=mysql
       - MYSQL_DATABASE=cloud
       - MYSQL_USER=cloud
       - MYSQL_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
@@ -20,12 +20,28 @@ services:
       - /tmp
     volumes:
       - ./data/cloud/:/srv/cloud/
-      - ./data/www/:/var/www/html/
+      #- ./data/www/:/var/www/html/
+      - nextcloud-www-vol-1:/var/www/html:ro
     networks:
       nextcloud-network:
         ipv4_address: 172.22.5.100
         aliases:
-          - cloud
+          - app
+
+  nextcloud-web:
+    build: ./web
+    restart: always
+    ports:
+      - "${NEXTCLOUD_WEB_BIND:-127.0.0.1}:${NEXTCLOUD_WEB_PORT:-8080}:80"
+    volumes:
+      - nextcloud-www-vol-1:/var/www/html:ro
+    depends_on:
+      - nextcloud-app
+    networks:
+      nextcloud-network:
+        ipv4_address: 172.22.5.101
+        aliases:
+          - web
 
   nextcloud-database:
     image: mariadb:10.2
@@ -44,7 +60,7 @@ services:
       - /tmp
     networks:
       nextcloud-network:
-        ipv4_address: 172.22.5.101
+        ipv4_address: 172.22.5.102
         aliases:
           - mysql
 
@@ -59,3 +75,4 @@ networks:
 
 volumes:
   nextcloud-db-vol-1:
+  nextcloud-www-vol-1:
