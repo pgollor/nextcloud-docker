@@ -14,14 +14,14 @@ services:
       - MYSQL_PASSWORD=${NEXTCLOUD_DATABASE_PASSWORD}
       - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
       - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
-      - NEXTCLOUD_DATA_DIR="/srv/cloud"
+      - NEXTCLOUD_DATA_DIR=/srv/cloud
       - TZ=${TZ}
     tmpfs:
       - /tmp
     volumes:
       - ./data/cloud/:/srv/cloud/
+      - nextcloud-www-vol-1:/var/www/html
       #- ./data/www/:/var/www/html/
-      - nextcloud-www-vol-1:/var/www/html:ro
     networks:
       nextcloud-network:
         ipv4_address: 172.22.5.100
