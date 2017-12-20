@@ -4,7 +4,7 @@
 # backup directory
 backupDir=./backup
 mkdir -p ${backupDir}
-mkdir -p ${backupDir}/cloud
+mkdir -p ${backupDir}/app
 mkdir -p ${backupDir}/conf
 mkdir -p ${backupDir}/db
 
@@ -19,8 +19,8 @@ sed -i "/^mysqldump: \\[Warning\\]/d" ${dbFile}
 tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
 
-# backup repositories
-tar -cj data/cloud nextcloud.conf -f "${backupDir}/cloud/${currentDate}.tbz2"
+# backup app data
+tar -cj data/app nextcloud.conf -f "${backupDir}/app/${currentDate}.tbz2"
 
 # backup config files
 tar -cj data/conf -f "${backupDir}/conf/${currentDate}.tbz2"
