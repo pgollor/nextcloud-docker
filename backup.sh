@@ -20,7 +20,7 @@ tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
 
 # backup app data
-tar -cj data/app nextcloud.conf -f "${backupDir}/app/${currentDate}.tbz2"
+sudo tar -cj data/app nextcloud.conf -f "${backupDir}/app/${currentDate}.tbz2"
 
 # backup config files
 tar -cj data/conf -f "${backupDir}/conf/${currentDate}.tbz2"
