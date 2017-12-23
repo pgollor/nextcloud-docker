@@ -1,0 +1,24 @@
+## nextcloud option
+
+# bind address for web port
+NEXTCLOUD_WEB_BIND=127.0.0.1
+
+# port to bind to
+NEXTCLOUD_WEB_PORT=8001
+
+# admin user name
+NEXTCLOUD_ADMIN_USER=admin
+
+# admin user password
+NEXTCLOUD_ADMIN_PASSWORD=changeme
+
+## database configuration
+# mysql root user password
+NEXTCLOUD_DATABASE_ROOT=changeme
+
+# database password
+NEXTCLOUD_DATABASE_PASSWORD=changeme
+
+
+## Timezone one of /usr/share/zoneinfo
+TZ=Europe/Berlin
