@@ -2,11 +2,13 @@ version: '2.1'
 
 services:
   nextcloud-app:
-    image: nextcloud:fpm
+    #image: nextcloud:fpm
+    build: ./app
     restart: always
     mem_limit: 1g
     depends_on:
       - nextcloud-database
+      - nextcloud-redis
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=cloud
@@ -60,6 +62,10 @@ services:
         ipv4_address: 172.22.5.102
         aliases:
           - mysql
+
+  nextcloud-redis:
+    image: redis
+    restart: always
 
 networks:
   nextcloud-network:
