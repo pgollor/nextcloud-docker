@@ -2,10 +2,9 @@ version: '2.1'
 
 services:
   nextcloud-app:
-    #image: nextcloud:fpm
     build: ./app
     restart: always
-    mem_limit: 1g
+    mem_limit: 512m
     depends_on:
       - nextcloud-database
       - nextcloud-redis
@@ -30,6 +29,7 @@ services:
   nextcloud-web:
     build: ./web
     restart: always
+    mem_limit: 512m
     ports:
       - "${NEXTCLOUD_WEB_BIND:-127.0.0.1}:${NEXTCLOUD_WEB_PORT:-8080}:80"
     volumes:
@@ -45,7 +45,7 @@ services:
   nextcloud-database:
     image: mariadb:10.2
     restart: always
-    mem_limit: 2g
+    mem_limit: 1g
     command: mysqld --skip-name-resolve --skip-host-cache --log-warnings=0
     environment:
       - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_DATABASE_ROOT}
@@ -64,8 +64,37 @@ services:
           - mysql
 
   nextcloud-redis:
+    mem_limit: 1g
     image: redis
     restart: always
+    networks:
+      nextcloud-network:
+
+  nextcloud-cron:
+    build: ./app
+    restart: always
+    volumes:
+      - ./data/app:/var/www/html
+    user: www-data
+    mem_limit: 256m
+    entrypoint: |
+      bash -c 'bash -s <<EOF
+        trap "break;exit" SIGHUP SIGINT SIGTERM
+        
+        while [ ! -f /var/www/html/config/config.php ]; do
+          sleep 1
+        do
+        
+        while true; do
+          php -f /var/www/html/cron.php
+          sleep 15m
+        done
+      EOF'
+    depends_on:
+      - nextcloud-app
+    networks:
+      nextcloud-network:
+
 
 networks:
   nextcloud-network:
