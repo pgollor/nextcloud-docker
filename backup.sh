@@ -2,10 +2,11 @@
 
 
 # backup directory
-backupDir=./backup
+backupDir=$PWD/backup
 mkdir -p ${backupDir}
 mkdir -p ${backupDir}/app
 mkdir -p ${backupDir}/conf
+mkdir -p ${backupDir}/data
 mkdir -p ${backupDir}/db
 
 # current date
@@ -20,10 +21,13 @@ tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
 
 # backup app data
-sudo tar -cj data/app nextcloud.conf -f "${backupDir}/app/${currentDate}.tbz2"
+tar -C data --exclude=app/data -cj app -f "${backupDir}/app/${currentDate}.tbz2"
+
+# backup data
+sudo tar -C data -cj app/data -f "${backupDir}/data/${currentDate}.tbz2"
 
 # backup config files
-tar -cj data/conf -f "${backupDir}/conf/${currentDate}.tbz2"
+tar -cj data/conf nextcloud.conf -f "${backupDir}/conf/${currentDate}.tbz2"
 
 # delete all files older 30 days
 #find ${backupDir} -iname "*.tbz2" -type f -mtime +10 -exec rm {} \; > /dev/null
