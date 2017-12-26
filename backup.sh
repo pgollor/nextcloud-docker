@@ -19,14 +19,14 @@ sed -i "/^mysqldump: \\[Warning\\]/d" ${dbFile}
 tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
 
-# backup app data
-tar -C data --exclude=app/data -pcj app -f "${backupDir}/app/${currentDate}.tbz2"
+# backup app data as root because of permissions
+sudo tar -C data --exclude=app/data -pcj app -f "${backupDir}/app/${currentDate}.tbz2"
 
-# backup data as root
+# backup data as root because of permissions
 sudo tar -C data -pcj app/data -f "${backupDir}/data/${currentDate}.tbz2"
 
 # backup config files
 tar -pcj data/conf nextcloud.conf -f "${backupDir}/conf/${currentDate}.tbz2"
 
 # delete all files older 30 days
-#find ${backupDir} -iname "*.tbz2" -type f -mtime +10 -exec rm {} \; > /dev/null
+find ${backupDir} -iname "*.tbz2" -type f -mtime +10 -exec rm {} \; > /dev/null
