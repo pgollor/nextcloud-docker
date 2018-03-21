@@ -69,7 +69,7 @@ services:
     restart: always
     networks:
       nextcloud-network:
-      aliases:
+        aliases:
           - redis
 
   nextcloud-cron:
