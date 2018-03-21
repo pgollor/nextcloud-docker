@@ -69,6 +69,8 @@ services:
     restart: always
     networks:
       nextcloud-network:
+      aliases:
+          - redis
 
   nextcloud-cron:
     build: ./app
