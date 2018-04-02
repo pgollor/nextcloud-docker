@@ -3,7 +3,6 @@
 
 # backup directory
 backupDir=$PWD/backup
-mkdir -p ${backupDir}
 mkdir -p ${backupDir}/app
 mkdir -p ${backupDir}/conf
 mkdir -p ${backupDir}/data
