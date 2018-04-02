@@ -12,6 +12,10 @@ NEXTCLOUD_ADMIN_USER=admin
 # admin user password
 NEXTCLOUD_ADMIN_PASSWORD=changeme
 
+# ipv4 network (only first three bytes like: 172.22.5)
+NEXTCLOUD_IPV4_NETWORK=172.22.5
+
+
 ## database configuration
 # mysql root user password
 NEXTCLOUD_DATABASE_ROOT=changeme
