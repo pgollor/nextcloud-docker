@@ -19,10 +19,10 @@ tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
 
 # backup app data as root because of permissions
-sudo tar -C data -pcj app -f "${backupDir}/app/${currentDate}.tbz2"
+sudo tar -C data -I pbzip2 -pc app -f "${backupDir}/app/${currentDate}.tbz2"
 
 # backup data as root because of permissions
-sudo tar -C data -pcj data -f "${backupDir}/data/${currentDate}.tbz2"
+sudo tar -C data -I pbzip2 -pc data -f "${backupDir}/data/${currentDate}.tbz2"
 
 # backup config files
 tar -pcj data/conf nextcloud.conf -f "${backupDir}/conf/${currentDate}.tbz2"
