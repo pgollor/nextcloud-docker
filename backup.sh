@@ -13,7 +13,7 @@ currentDate=$(date +"%Y-%m-%d_%H-%M-%S")
 
 # backup mysql
 dbFile="${backupDir}/db/${currentDate}.sql"
-docker-compose exec nextcloud-database sh -c 'mysqldump --single-transaction=TRUE --lock-tables --default-character-set=utf8mb4 -uroot -p"${MYSQL_ROOT_PASSWORD}" ${MYSQL_DATABASE}' > ${dbFile}
+docker-compose exec $(docker container ls -qf name=nextcloud-database) sh -c 'mysqldump --single-transaction=TRUE --lock-tables --default-character-set=utf8mb4 -uroot -p"${MYSQL_ROOT_PASSWORD}" ${MYSQL_DATABASE}' > ${dbFile}
 sed -i "/^mysqldump: \\[Warning\\]/d" ${dbFile}
 tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
@@ -22,7 +22,7 @@ rm ${dbFile}
 sudo tar -C data -I pbzip2 -pc app -f "${backupDir}/app/${currentDate}.tbz2"
 
 # backup data as root because of permissions
-sudo tar -C data -I pbzip2 -pc data -f "${backupDir}/data/${currentDate}.tbz2"
+#sudo tar -C data -I pbzip2 -pc data -f "${backupDir}/data/${currentDate}.tbz2"
 
 # backup config files
 tar -pcj data/conf nextcloud.conf -f "${backupDir}/conf/${currentDate}.tbz2"
