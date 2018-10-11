@@ -1,6 +1,9 @@
 # nextcloud
 
-docker compose for https://github.com/nextcloud/docker/
+docker compose files for https://github.com/nextcloud/docker/
+
+## 2018-10-11
+Do not update. Have a look at `DO_NOT-UPDATE.md` for further information.
 
 ## first start
 ```
