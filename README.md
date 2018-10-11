@@ -22,6 +22,5 @@ message:
 solution:
 
 ```
-source nextcloud.conf
-docker-compose exec nextcloud-database sh -c 'mysql_upgrade -uroot -p${NEXTCLOUD_DATABASE_ROOT}'
+docker-compose exec nextcloud-database sh -c 'mysql_upgrade -uroot -p${MYSQL_ROOT_PASSWORD}'
 ```
