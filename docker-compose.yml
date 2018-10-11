@@ -48,7 +48,7 @@ services:
           - web
 
   nextcloud-database:
-    image: mariadb:10.2
+    image: mariadb:10.3
     restart: always
     mem_limit: 1g
     command: mysqld --skip-name-resolve --skip-host-cache --log-warnings=0
