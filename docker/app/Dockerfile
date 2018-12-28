@@ -9,6 +9,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN	pecl install \
 	smbclient \
 	imagick
-RUN docker-php-ext-enable smbclient imagick bz2
+RUN docker-php-ext-install bz2
+RUN docker-php-ext-enable smbclient imagick
 
 COPY redis.config.php /usr/src/nextcloud/config/redis.config.php
