@@ -1,5 +1,9 @@
 # nextcloud
 
+- app: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-app/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-app/)
+- web: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-web/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-web/)
+- [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/pgollor)
+
 Docker compose files for nextcloud
 
 
