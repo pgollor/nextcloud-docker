@@ -2,7 +2,8 @@ version: '2.2'
 
 services:
   nextcloud-app:
-    build: ./docker/app
+    #build: ./docker/app
+    image: pgollor/nextcloud:app-latest
     restart: always
     mem_limit: 512m
     cpus: 1.5
@@ -30,7 +31,8 @@ services:
           - app
 
   nextcloud-web:
-    build: ./docker/web
+    #build: ./docker/web
+    image: pgollor/nextcloud:web-latest
     restart: always
     mem_limit: 512m
     logging:
@@ -78,7 +80,8 @@ services:
           - redis
 
   nextcloud-cron:
-    build: ./docker/app
+    #build: ./docker/app
+    image: pgollor/nextcloud:app-latest
     restart: always
     volumes:
       - ./data/app:/var/www/html
