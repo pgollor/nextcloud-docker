@@ -1,8 +1,8 @@
 # nextcloud
 
-- app: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-app/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-app/)
-- web: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-web/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-web/)
-- [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/pgollor)
+- [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/pgollor) [![Docker Pulls](https://img.shields.io/docker/pulls/pgollor/nextcloud.svg)](https://hub.docker.com/r/pgollor/nextcloud/)
+- app: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-app/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-app/) [![](https://images.microbadger.com/badges/image/pgollor/nextcloud:app-latest.svg)](https://microbadger.com/images/pgollor/nextcloud:app-latest "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/pgollor/nextcloud:app-latest.svg)](https://microbadger.com/images/pgollor/nextcloud:app-latest "Get your own version badge on microbadger.com")
+- web: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-web/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-web/) [![](https://images.microbadger.com/badges/image/pgollor/nextcloud:web-latest.svg)](https://microbadger.com/images/pgollor/nextcloud:web-latest "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/pgollor/nextcloud:web-latest.svg)](https://microbadger.com/images/pgollor/nextcloud:web-latest "Get your own version badge on microbadger.com")
 
 Docker compose files for nextcloud
 
