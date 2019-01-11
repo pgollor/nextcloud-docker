@@ -1,5 +1,10 @@
 FROM nextcloud:stable-fpm
 
+ARG NV
+
+LABEL org.label-schema.vc-url="https://gitbucket.pgollor.de/docker/nextcloud" \
+  nv=$NV
+
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 	smbclient libsmbclient-dev \
