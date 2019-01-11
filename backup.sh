@@ -4,7 +4,7 @@
 # backup directory
 backupDir=$PWD/backup
 mkdir -p ${backupDir}/app
-mkdir -p ${backupDir}/conf
+mkdir -p ${backupDir}/docker-conf
 mkdir -p ${backupDir}/data
 mkdir -p ${backupDir}/db
 
@@ -25,7 +25,7 @@ sudo tar -C data -I pbzip2 -pc app -f "${backupDir}/app/${currentDate}.tbz2"
 #sudo tar -C data -I pbzip2 -pc data -f "${backupDir}/data/${currentDate}.tbz2"
 
 # backup config files
-tar -pcj data/conf nextcloud.conf -f "${backupDir}/conf/${currentDate}.tbz2"
+tar -pcj nextcloud.conf -f "${backupDir}/docker-conf/${currentDate}.tbz2"
 
 # delete all files older 30 days
 find ${backupDir} -iname "*.tbz2" -type f -mtime +10 -exec rm {} \; > /dev/null
