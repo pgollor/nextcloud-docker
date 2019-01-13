@@ -3,7 +3,7 @@ FROM nextcloud:stable-fpm
 ARG NV
 ARG VCS_REF
 
-LABEL org.label-schema.vc-url="https://gitbucket.pgollor.de/docker/nextcloud" \
+LABEL org.label-schema.vcs-url="https://gitbucket.pgollor.de/docker/nextcloud" \
 	org.label-schema.vcs-ref=$VCS_REF \
 	nv=$NV
 
