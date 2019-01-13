@@ -1,9 +1,11 @@
 FROM nextcloud:stable-fpm
 
 ARG NV
+ARG VCS_REF
 
 LABEL org.label-schema.vc-url="https://gitbucket.pgollor.de/docker/nextcloud" \
-  nv=$NV
+	org.label-schema.vcs-ref=$VCS_REF \
+	nv=$NV
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
