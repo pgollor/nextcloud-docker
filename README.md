@@ -11,6 +11,12 @@ Docker compose files for nextcloud
 
 Get additional infos from https://hub.docker.com/_/nextcloud/ and from https://github.com/nextcloud/docker/tree/master/.examples .
 
+## update hints
+
+### 14.0.4 to 14.0.16
+
+If you get a database error for the `activity` table, please have a look at this [issue](https://github.com/nextcloud/activity/issues/309#issuecomment-436929111).
+
 ## first start
 ```
 mkdir data/data
