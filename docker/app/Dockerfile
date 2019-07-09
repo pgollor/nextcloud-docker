@@ -1,4 +1,5 @@
-FROM nextcloud:fpm
+#FROM nextcloud:fpm
+FROM pgollor/nextcloud-fpm
 
 ARG NV
 ARG VCS_REF
