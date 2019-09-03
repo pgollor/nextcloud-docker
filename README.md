@@ -1,4 +1,4 @@
-# nextcloud
+# Nextcloud
 
 - [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/pgollor) [![Docker Pulls](https://img.shields.io/docker/pulls/pgollor/nextcloud.svg)](https://hub.docker.com/r/pgollor/nextcloud/)
 - app: [![Build Status](https://jenkins.pgollor.de/job/nextcloud-docker-app/badge/icon)](https://jenkins.pgollor.de/job/nextcloud-docker-app/) [![](https://images.microbadger.com/badges/image/pgollor/nextcloud:app-latest.svg)](https://microbadger.com/images/pgollor/nextcloud:app-latest "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/pgollor/nextcloud:app-latest.svg)](https://microbadger.com/images/pgollor/nextcloud:app-latest "Get your own version badge on microbadger.com") [![based on nextcloud-version](https://img.shields.io/badge/dynamic/json.svg?label=based%20on&url=https%3A%2F%2Fapi.microbadger.com%2Fv1%2Fimages%2Fpgollor%2Fnextcloud%3Aapp-latest&query=%24.Labels.nv&colorB=brightgreen&prefix=nextcloud-)](https://hub.docker.com/_/nextcloud/)
@@ -7,17 +7,23 @@
 Docker compose files for nextcloud
 
 
-## information
+## Information
 
 Get additional infos from https://hub.docker.com/_/nextcloud/ and from https://github.com/nextcloud/docker/tree/master/.examples .
 
-## update hints
+### occ Command
+```
+docker-compose exec --user www-data nextcloud-app php occ [command]
+```
+
+
+## Update hints
 
 ### 14.0.4 to 14.0.16
 
 If you get a database error for the `activity` table, please have a look at this [issue](https://github.com/nextcloud/activity/issues/309#issuecomment-436929111).
 
-## first start
+## First start
 ```
 mkdir data/data
 chown www-data data/data
