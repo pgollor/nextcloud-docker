@@ -1,4 +1,4 @@
-FROM nextcloud:fpm
+FROM nextcloud:16-fpm
 
 ARG NV
 ARG VCS_REF
