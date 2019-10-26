@@ -73,7 +73,7 @@ services:
 
   nextcloud-redis:
     mem_limit: 1g
-    image: redis
+    image: redis:alpine
     restart: always
     networks:
       nextcloud-network:
@@ -86,13 +86,27 @@ services:
     restart: always
     volumes:
       - ./data/app:/var/www/html
+      - ./data/data:/srv/data
     user: www-data
     mem_limit: 256m
     logging:
       driver: json-file
-    entrypoint: /cron.sh
+    entrypoint: |
+      bash -c 'bash -s <<EOF
+        trap "break;exit" SIGHUP SIGINT SIGTERM
+    
+        while [ ! -f /var/www/html/config/config.php ]; do
+          sleep 1
+        done
+    
+        while true; do
+          php -f /var/www/html/cron.php
+          sleep 15m
+        done
+      EOF'
     depends_on:
-      - nextcloud-app
+      - nextcloud-database
+      - nextcloud-redis
     networks:
       nextcloud-network:
 
