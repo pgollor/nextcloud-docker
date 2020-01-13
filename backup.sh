@@ -2,7 +2,10 @@
 
 
 # backup directory
-backupDir=$PWD/backup
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+backupDir=${SCRIPT_DIR}/backup
+
+# create directories
 mkdir -p ${backupDir}/app
 mkdir -p ${backupDir}/docker-conf
 mkdir -p ${backupDir}/data
@@ -18,10 +21,10 @@ sed -i "/^mysqldump: \\[Warning\\]/d" ${dbFile}
 tar -cj ${dbFile} -f "${dbFile}.tbz2"
 rm ${dbFile}
 
-# backup app data as root because of permissions
+# backup app data as root because of permission problems
 sudo tar -C data -I pbzip2 -pc app -f "${backupDir}/app/${currentDate}.tbz2"
 
-# backup data as root because of permissions
+# backup data as root because of permission problems
 #sudo tar -C data -I pbzip2 -pc data -f "${backupDir}/data/${currentDate}.tbz2"
 
 # backup config files
