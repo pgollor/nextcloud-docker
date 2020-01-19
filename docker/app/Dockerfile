@@ -10,7 +10,8 @@ LABEL org.label-schema.vcs-url="https://gitbucket.pgollor.de/docker/nextcloud" \
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 	smbclient libsmbclient-dev \
-	libbz2-dev
+	libbz2-dev \
+	libmagickcore-6.q16-3-extra
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN	pecl install \
 	smbclient

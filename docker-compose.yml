@@ -91,19 +91,7 @@ services:
     mem_limit: 256m
     logging:
       driver: json-file
-    entrypoint: |
-      bash -c 'bash -s <<EOF
-        trap "break;exit" SIGHUP SIGINT SIGTERM
-    
-        while [ ! -f /var/www/html/config/config.php ]; do
-          sleep 1
-        done
-    
-        while true; do
-          php -f /var/www/html/cron.php
-          sleep 15m
-        done
-      EOF'
+    entrypoint: /cron.sh
     depends_on:
       - nextcloud-database
       - nextcloud-redis
