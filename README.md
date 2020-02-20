@@ -16,6 +16,18 @@ Get additional infos from https://hub.docker.com/_/nextcloud/ and from https://g
 docker-compose exec --user www-data nextcloud-app php occ [command]
 ```
 
+### Database
+
+#### into db console
+```
+docker-compose exec nextcloud-database sh -c 'mysql -uroot -p"${MYSQL_ROOT_PASSWORD}"'
+```
+
+#### restore database from sql file
+```
+docker exec -i $(docker container ls -qf name=nextcloud-database) sh -c 'mysql -uroot -p"${MYSQL_ROOT_PASSWORD}" ${MYSQL_DATABASE}' < backup.sql
+```
+
 
 ## Update hints
 
